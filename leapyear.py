@@ -1,6 +1,6 @@
 # Detecting leap year
 # year is inputted from command line
-# 27.Oct.2015 Nagisa Yata
+# 27.Oct.2015 Mana Sasagawa and Nagisa Yata
 
 import sys
 
@@ -23,9 +23,8 @@ if argc < 2 or not argv[1].isdigit():
   print "You have to input year as argument"
   quit()
 
+#output the result
 if detect_leapyear(argv[1]):
   print argv[1] + " is a leap year"
 else:
   print argv[1] + " is not a leap year"
-
-

@@ -1,6 +1,6 @@
 # Determination of the day of the week
 # 
-# 28.Oct.2015 Nagisa Yata
+# 28.Oct.2015 Mana Sasagawa and Nagisa Yata
 
 import datetime
 import math
@@ -42,15 +42,18 @@ def determine_day_of_week(date_original):
 date = raw_input("Input the date (DD/MM/YYYY):")
 split_date = date.split("/")
 
+#error
 data_set = [2, 4, 6, 9, 11]
 
 i = 0
 y = 0
 m = 0
 d = 0
+
+# split_data = [DD,MM,YYYY]
 for s in split_date:
   if not s.isdigit():
-    print "1please input date"
+    print "please input date"
     quit()
   elif i == 0:
     d = int(s)
@@ -64,7 +67,7 @@ for s in split_date:
   i += 1
 
 if d == 0 or m == 0 or y == 0:
-  print "2please input date"
+  print "please input date"
   quit()
 
 # end validation
