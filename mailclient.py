@@ -40,7 +40,8 @@ print '--- say HELO ---'
 
 # send greeting to server
 # and wait apply from server
-greeting = 'HELO Bob\r\n'
+machine_name = 'localhost'
+greeting = 'HELO '+machine_name+'\r\n'
 try:
   sock.send(greeting)
 except socket.error, msg:
@@ -50,15 +51,6 @@ recv_greeting = sock.recv(1024)
 print recv_greeting
 if recv_greeting[:3] != '250':
   print 'greeting error'
-
-#print '--- starttls connection ---'
-#try:
-#  sock.send('STARTTLS\r\n')
-#except socket.error, msg:
-#  print >>sys.stderr, msg
-#  sys.exit(1)
-#recv_starttls = sock.recv(1024)
-#print recv_starttls
 
 print '--- send sender address ---'
 
@@ -94,8 +86,16 @@ print recv_data
 if recv_data[:3] != '250':
   print 'data error'
 
-message = raw_input("raw_input message:")
-sock.send(message + '\r\n.\r\n')
+
+# read message from textfile
+filename = raw_input("input message file(must be .txt):")
+file = open(filename)
+messages = file.readlines()
+file.close()
+
+for message in messages:
+  sock.send(message + '\r\n')
+sock.send('.\r\n')
 recv_message = sock.recv(1024)
 print recv_message
 if recv_message[:3] != '250':
